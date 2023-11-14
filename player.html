@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload and Play</title>
+</head>
+<body>
+
+<h2>File Upload and Play</h2>
+
+<input type="file" accept="video/*" id="videoInput" onchange="playVideo()">
+
+<video width="600" height="400" controls id="videoPlayer">
+    Your browser does not support the video tag.
+</video>
+
+<script>
+    function playVideo() {
+        var input = document.getElementById('videoInput');
+        var video = document.getElementById('videoPlayer');
+
+        var file = input.files[0];
+        var objectURL = URL.createObjectURL(file);
+
+        video.src = objectURL;
+
+        video.onloadedmetadata = function() {
+            video.play();
+        };
+    }
+</script>
+
+</body>
+</html>
